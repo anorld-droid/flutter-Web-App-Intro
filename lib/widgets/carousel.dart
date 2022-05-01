@@ -66,6 +66,7 @@ class _MainCarouselState extends State<MainCarousel> {
               onPageChanged: (index, reason) {
                 setState(() {
                   _current = index;
+                  // debugPrint(index.toString()); Log to console
                   for (int i = 0; i < imageSliders.length; i++) {
                     if (i == index) {
                       _isSelected[i] = true;
@@ -73,7 +74,6 @@ class _MainCarouselState extends State<MainCarousel> {
                       _isSelected[i] = false;
                     }
                   }
-
                 });
               }),
           carouselController: _controller,
@@ -92,7 +92,9 @@ class _MainCarouselState extends State<MainCarousel> {
             ),
           ),
         ),
-         AspectRatio(
+        screenSize.width < 800
+            ? Container()
+            : AspectRatio(
                 aspectRatio: 17 / 8,
                 child: Center(
                   heightFactor: 1,
@@ -118,6 +120,7 @@ class _MainCarouselState extends State<MainCarousel> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     InkWell(
+                                      //Works as a link
                                       splashColor: Colors.transparent,
                                       hoverColor: Colors.transparent,
                                       onHover: (value) {

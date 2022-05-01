@@ -38,7 +38,31 @@ class _HomePageState extends State<HomePage> {
         : 1;
 
     return Scaffold(
-      body: Column(
+      extendBodyBehindAppBar: true,
+      appBar: screenSize.width < 800
+          ? AppBar(
+              iconTheme: IconThemeData(color: Colors.blue),
+              elevation: 0,
+              backgroundColor: Colors.white.withOpacity(_opacity),
+              title: Text(
+                'Author',
+                style: TextStyle(
+                  color: Color(0xFF077bd7),
+                  fontSize: 26,
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 3,
+                ),
+              ),
+            )
+          : PreferredSize(
+              preferredSize: Size(screenSize.width, 70),
+              child: TopBarContents(_opacity),
+            ),
+      drawer: MenuDrawer(),
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: Column(
           children: [
             Stack(
               children: [
@@ -52,13 +76,22 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-
+                Column(
+                  children: [
+                    FloatingQuickAccessBar(screenSize: screenSize),
+                    FeaturedHeading(screenSize: screenSize),
+                    FeaturedTiles(screenSize: screenSize),
+                    MainHeading(screenSize: screenSize),
+                    MainCarousel(),
+                    SizedBox(height: screenSize.height / 10),
+                    BottomBar(),
+                  ],
+                ),
               ],
             ),
-
           ],
         ),
-
+      ),
     );
   }
 }
