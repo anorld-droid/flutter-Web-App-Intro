@@ -17,19 +17,42 @@ class FeaturedHeading extends StatelessWidget {
         left: screenSize.width / 15,
         right: screenSize.width / 15,
       ),
-      child:  Row(
+      child: screenSize.width < 800
+          ? Padding(
+              padding: EdgeInsets.only(
+                  top: screenSize.height / 50, left: screenSize.width / 85),
+              child:
+                  Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Featured',
+                      style: TextStyle(
+                          fontSize: 36,
+                          fontFamily: 'Raleway',
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF077bd7)),
+                    ),
+                    Text(
+                      'Clue of the wooden cottage',
+                      textAlign: TextAlign.end,
+                    ),
+                  ],
+                ),
+              ]))
+          : Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-              Text(
-              'Featured',
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: 'Raleway',
-                  fontWeight: FontWeight.bold,
-                  color:Color(0xFF263b5e)
-              ),
-            ),
+                Text(
+                  'Featured',
+                  style: TextStyle(
+                      fontSize: 36,
+                      fontFamily: 'Raleway',
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF077bd7)),
+                ),
                 Expanded(
                   child: Text(
                     'Clue of the wooden cottage',
